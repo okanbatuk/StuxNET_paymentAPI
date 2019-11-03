@@ -12,4 +12,13 @@ router.post('/payment', async (req,res) => {
     }
 })
 
+router.post('/pay', async (req,res) => {
+    const pay = await paymentTransaction.pay(req.body);
+    if (pay.recordset[0].Status != 0) {
+        res.json(pay.recordsets[0]);
+    } else {
+        res.json({ status:500, message:"Insuficcient Balance !!" });
+    }
+})
+
 module.exports = router;

@@ -12,3 +12,16 @@ module.exports.payments = async (data) => {
         return {status: 404, message: error.originalError.info.message };
     }
 }
+
+module.exports.pay = async (data) => {
+    try {
+        let result1 = await pool.request()
+            .input('billID', mssql.Int, data.billID)
+            .input('accNo', mssql.BigInt , data.accNo)
+            .input('additNo', mssql.Int, data.additNo)
+            .execute('SP_debt_payment')
+            return result1;
+    } catch (error) {
+        return { status: 404, message: error.originalError.info.message };
+    }
+} 

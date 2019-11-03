@@ -10,7 +10,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/pay', payment);
+app.use('/', payment);
 
 
 app.listen(port, () => {
