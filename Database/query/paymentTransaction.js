@@ -14,6 +14,7 @@ module.exports.payments = async (data) => {
 }
 
 module.exports.pay = async (data) => {
+    const pool = await sql.getConnection();
     try {
         let result1 = await pool.request()
             .input('billID', mssql.Int, data.billID)
